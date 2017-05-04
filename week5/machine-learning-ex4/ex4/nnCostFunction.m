@@ -92,17 +92,11 @@ J = J + (lambda / (2*m)) * penalty;
 % J = J + penalty;
 
 
+delta3 = hx-Y;
+delta2 = (Theta2' * delta3)(2:end, :) .* sigmoidGradient(z2);
 
-
-
-
-
-
-
-
-
-
-
+Theta2_grad = (1/m) * (Theta2_grad + delta3 * a2');
+Theta1_grad = (1/m) * (Theta1_grad + delta2 * X);
 
 
 
