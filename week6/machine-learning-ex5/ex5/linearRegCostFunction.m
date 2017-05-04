@@ -24,7 +24,10 @@ penalty = (lambda / (2 * m)) * sum((theta .^ 2)(2:end));
 
 J = J + penalty;
 
-
+grad = (X'*(hx-y))/m;
+grad(2:end) = grad(2:end) + (lambda / m) * theta(2:end);
+% grad = sum((hx-y)'*X) / m
+% grad(2:end) = grad(2:end) + lambda * theta / m;
 % =========================================================================
 
 grad = grad(:);
