@@ -92,12 +92,16 @@ J = J + (lambda / (2*m)) * penalty;
 % J = J + penalty;
 
 
+% back propagation
 delta3 = hx-Y;
 delta2 = (Theta2' * delta3)(2:end, :) .* sigmoidGradient(z2);
 
 Theta2_grad = (1/m) * (Theta2_grad + delta3 * a2');
 Theta1_grad = (1/m) * (Theta1_grad + delta2 * X);
 
+% Gradient regulation
+Theta2_grad(:, 2:end) = (Theta2_grad + (lambda / m * Theta2))(:, 2:end);
+Theta1_grad(:, 2:end) = (Theta1_grad + (lambda / m * Theta1))(:, 2:end);
 
 
 % -------------------------------------------------------------
